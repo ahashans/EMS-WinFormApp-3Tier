@@ -1,0 +1,40 @@
+C:\Users\Admin\Documents\Visual Studio 2012\Projects\3-Tier\3-Tier\bin\Debug\3-Tier.exe.config
+C:\Users\Admin\Documents\Visual Studio 2012\Projects\3-Tier\3-Tier\obj\Debug\3-Tier.exe
+C:\Users\Admin\Documents\Visual Studio 2012\Projects\3-Tier\3-Tier\obj\Debug\3-Tier.pdb
+E:\DotNet\3-Tier\3-Tier\bin\Debug\3-Tier.exe.config
+E:\DotNet\3-Tier\3-Tier\obj\Debug\3-Tier.pdb
+E:\DotNet\3-Tier\3-Tier\bin\Debug\3-Tier.exe
+E:\DotNet\3-Tier\3-Tier\bin\Debug\3-Tier.pdb
+E:\DotNet\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.EMS.BusinessLayer.dll
+E:\DotNet\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.Ems.EntityLayer.dll
+E:\DotNet\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.Ems.DataLayer.dll
+E:\DotNet\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.EMS.BusinessLayer.pdb
+E:\DotNet\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.Ems.EntityLayer.pdb
+E:\DotNet\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.Ems.DataLayer.pdb
+E:\DotNet\3-Tier\3-Tier\obj\Debug\3-Tier.csprojResolveAssemblyReference.cache
+E:\DotNet\3-Tier\3-Tier\obj\Debug\_3_Tier.Form1.resources
+E:\DotNet\3-Tier\3-Tier\obj\Debug\_3_Tier.Properties.Resources.resources
+E:\DotNet\3-Tier\3-Tier\obj\Debug\3-Tier.csproj.GenerateResource.Cache
+E:\DotNet\3-Tier\3-Tier\obj\Debug\3-Tier.exe
+E:\Shahria DotNet\Exercise Windows Shahriar\DOt Net Class Work\3-Tier\3-Tier\bin\Debug\3-Tier.exe.config
+E:\Shahria DotNet\Exercise Windows Shahriar\DOt Net Class Work\3-Tier\3-Tier\obj\Debug\3-Tier.exe
+E:\Shahria DotNet\Exercise Windows Shahriar\DOt Net Class Work\3-Tier\3-Tier\obj\Debug\3-Tier.pdb
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\3-Tier.exe.config
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\3-Tier.exe
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\3-Tier.pdb
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\3-Tier.exe
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\3-Tier.pdb
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.EMS.BusinessLayer.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.Ems.EntityLayer.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.Ems.DataLayer.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.EMS.BusinessLayer.pdb
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.Ems.EntityLayer.pdb
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\Cognizant.Dotnet.Ems.DataLayer.pdb
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\3-Tier.csprojResolveAssemblyReference.cache
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\_3_Tier.Properties.Resources.resources
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\3-Tier.csproj.GenerateResource.Cache
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\3-Tier.csproj.CoreCompileInputs.cache
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\_3_Tier.AddDeptDtls.resources
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\_3_Tier.AddEmployeeDtls.resources
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\APP_DATA\EMS.mdf
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\APP_DATA\EMS_log.ldf
