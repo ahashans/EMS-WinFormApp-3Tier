@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using Cognizant.Dotnet.Ems.EntityLayer;
 using Cognizant.Dotnet.Ems.DataLayer;
@@ -17,36 +18,51 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer {
             objDatatable1 = new DataTable();
             objDataAddEmp = new DataAddEmployee();
         }
-        public int BusinessAddEmpDetails(EntityAddEmployee objEntityAddEmployee) {
 
-            //objDatatable.Clear();
-            if (objEntityAddEmployee.EmpID!=null && objEntityAddEmployee.EmpName != null &&
+        public int ValidateEmpDtlsInfo(EntityAddEmployee objEntityAddEmployee)
+        {
+            int flag = 0;
+            if (objEntityAddEmployee.EmpID != null && objEntityAddEmployee.EmpName != null &&
                 objEntityAddEmployee.DepartmentName != null &&
-                objEntityAddEmployee.Location!= null &&
+                objEntityAddEmployee.Location != null &&
                 objEntityAddEmployee.ContactNo != null)
             {
                 if (objEntityAddEmployee.EmpID < 1000 ||
                     objEntityAddEmployee.EmpID > 2000000)
                 {
-                    return 3;
+                    throw new ArgumentOutOfRangeException();
                 }
                 if (objEntityAddEmployee.ContactNo < 1500000000 ||
                     objEntityAddEmployee.ContactNo > 1999999999)
                 {
-                    return 3;
+                    throw new ArgumentOutOfRangeException();
                 }
                 if (int.TryParse(objEntityAddEmployee.EmpName, out int _))
                 {
-                    return 3;
+                    throw new ArgumentException();
                 }
                 if (int.TryParse(objEntityAddEmployee.Location, out int _))
                 {
-                    return 3;
+                    throw new ArgumentException();
                 }
                 if (int.TryParse(objEntityAddEmployee.DepartmentName, out int _))
                 {
-                    return 3;
+                    throw new ArgumentException();
                 }
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
+            flag= 1;
+            return flag;
+        }
+        public int BusinessAddEmpDetails(EntityAddEmployee objEntityAddEmployee) {
+
+            //objDatatable.Clear();
+            if (ValidateEmpDtlsInfo(objEntityAddEmployee) != 1)
+            {
+                return 3;
             }
             SqlParameter[] objDataParams = new SqlParameter[5];
             objDataParams[0] = new SqlParameter("@EmpId", SqlDbType.Int) {Value = objEntityAddEmployee.EmpID};

@@ -33,7 +33,7 @@ namespace Cognizant.Dotnet.EMS.UnitTest
             objEntityAddEmp.DepartmentName = null;
             objEntityAddEmp.Location = null;
             objEntityAddEmp.ContactNo= 0;
-            Assert.ThrowsException<InvalidOperationException>(() => objBusinessAddEmp.BusinessAddEmpDetails(objEntityAddEmp));
+            Assert.ThrowsException<ArgumentNullException>(() => objBusinessAddEmp.ValidateEmpDtlsInfo(objEntityAddEmp));
         }
         [TestMethod]
         public void TestBusinessAddEmpDtls14()
@@ -43,7 +43,7 @@ namespace Cognizant.Dotnet.EMS.UnitTest
             objEntityAddEmp.DepartmentName = "Audit";
             objEntityAddEmp.Location = "Dhaka";
             objEntityAddEmp.ContactNo = 2000000000;
-            Assert.AreEqual(3, objBusinessAddEmp.BusinessAddEmpDetails(objEntityAddEmp));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => objBusinessAddEmp.ValidateEmpDtlsInfo(objEntityAddEmp));
         }
         [TestMethod]        
         public void TestBusinessAddEmpDtls15()

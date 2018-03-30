@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessAddEmpDtlsTest.cs" />
+    <Compile Include="PresentationLayerAddEmpDtlsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
