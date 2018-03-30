@@ -9,7 +9,7 @@ using Cognizant.Dotnet.Ems.EntityLayer;
 
 namespace _3_Tier
 {
-    public partial class AddEmployeeDtls : System.Windows.Forms.Form
+    public partial class AddEmployeeDtls : Form
     {
         DataTable dt = new DataTable();
         DataTable dt1 = new DataTable();
@@ -23,8 +23,8 @@ namespace _3_Tier
 
         public int InsertIntoDb(EntityAddEmployee objEntityAddEmployee)
         {
-            if (objEntityAddEmployee.EmpID == null || objEntityAddEmployee.EmpID < 1000000 ||
-                objEntityAddEmployee.EmpID > 1999999999)
+            if (objEntityAddEmployee.EmpID == null || objEntityAddEmployee.EmpID < 100 ||
+                objEntityAddEmployee.EmpID > 20000)
             {
                 MessageBox.Show("Invalid Employee Id");
                 return 2;
@@ -57,11 +57,12 @@ namespace _3_Tier
         {
             EntityAddEmployee Entityobj = new EntityAddEmployee();
             int result = 0;
-            Entityobj.EmpID = Convert.ToInt16(txtEid.Text);
+            Entityobj.EmpID = Convert.ToInt32(txtEid.Text);
             Entityobj.EmpName = txtEname.Text;
             Entityobj.DepartmentName = cmbDept.Text;
             Entityobj.Location = Cmbloc.Text;
-            Entityobj.ContactNo = Convert.ToDouble (txtContactno.Text);
+            Entityobj.ContactNo = Convert.ToInt64(txtContactno.Text);
+            //result = Businessobj.BusinessAddEmpDetails(Entityobj);
             result = InsertIntoDb(Entityobj);
 
             if (result == 1)
@@ -82,16 +83,7 @@ namespace _3_Tier
             {
                 MessageBox.Show("You have Not Registered successfully"); ;
             }
-
-
-
-
-
-
-
-
-
-
+            FillData();
         }
 
         private void Form1_Load(object sender, EventArgs e)

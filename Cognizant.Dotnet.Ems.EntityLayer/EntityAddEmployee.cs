@@ -5,9 +5,8 @@ namespace Cognizant.Dotnet.Ems.EntityLayer {
         public Int32? EmpID { get; set; }
         public string EmpName { get; set; }
         public string DepartmentName { get; set; }
-
         public string Location { get; set; }
-        public Double? ContactNo { get; set; }
+        public long? ContactNo { get; set; }
 
         
     }

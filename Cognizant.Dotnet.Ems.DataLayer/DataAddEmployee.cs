@@ -5,39 +5,52 @@ using System.Data.SqlClient;
 
 namespace Cognizant.Dotnet.Ems.DataLayer
 {
-    public class DataAddEmployee {
+    public class DataAddEmployee
+    {
+        private static string conStr;
 
-        static string conStr = ConfigurationManager.AppSettings["Connection"];
-
-        SqlConnection objConnnection = new SqlConnection(conStr);
+        private SqlConnection objConnnection;
         SqlCommand objCommand;
         SqlDataAdapter objAdapter;
-        DataSet objDataSet = new DataSet();
+        private DataSet objDataSet;
 
+        public DataAddEmployee()
+        {
+
+            conStr = ConfigurationManager.AppSettings["Connection"];
+            objConnnection = new SqlConnection(conStr);
+            objDataSet = new DataSet();
+        }
         public int DataAddEmployeeDetails(SqlParameter[] objParams) {
+//            conStr = ConfigurationManager.AppSettings["Connection"];
+//            objConnnection = new SqlConnection(conStr);
             objCommand = new SqlCommand("USPEmpDtls", objConnnection);
             objCommand.CommandType = CommandType.StoredProcedure;
 
 
             objCommand.Parameters.AddRange(objParams);
             objConnnection.Open();
-
+    
             int result;
+
             try
             {
                 result = objCommand.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
                 throw new InvalidOperationException();
             }
+            //result = objCommand.ExecuteNonQuery();
             objConnnection.Close();
             return result;
 
 
         }
-        public DataSet DataFillDeptDetails() {
-            objCommand = new SqlCommand("USPDept", objConnnection);
+        public DataSet DataFillDeptDetails()
+        {
+            objCommand = new SqlCommand("USPDept");
+            objCommand.Connection = objConnnection;
             objCommand.CommandType = CommandType.StoredProcedure;
             objConnnection.Open();
             objAdapter = new SqlDataAdapter(objCommand);
@@ -48,8 +61,7 @@ namespace Cognizant.Dotnet.Ems.DataLayer
         }
 
         public DataSet DataFillLocationDetails() {
-            objCommand = new SqlCommand("USPLocation", objConnnection);
-            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand = new SqlCommand("USPLocation", objConnnection) {CommandType = CommandType.StoredProcedure};
             objConnnection.Open();
             objAdapter = new SqlDataAdapter(objCommand);
             objAdapter.Fill(objDataSet, "Location");

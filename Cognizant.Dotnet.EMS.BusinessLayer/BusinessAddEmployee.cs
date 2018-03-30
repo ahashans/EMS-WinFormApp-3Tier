@@ -6,19 +6,27 @@ using Cognizant.Dotnet.Ems.DataLayer;
 
 namespace Cognizant.Dotnet.EMS.BusinessLayer {
     public class BusinessAddEmployee {
-        DataTable objDatatable = new DataTable();
-        DataTable objDatatable1 = new DataTable();
-        DataAddEmployee objDataAddEmp = new DataAddEmployee();
+        DataTable objDatatable ;
+        DataTable objDatatable1 ;
+        DataAddEmployee objDataAddEmp ;
+
+
+        public BusinessAddEmployee()
+        {
+            objDatatable = new DataTable();
+            objDatatable1 = new DataTable();
+            objDataAddEmp = new DataAddEmployee();
+        }
         public int BusinessAddEmpDetails(EntityAddEmployee objEntityAddEmployee) {
 
-            objDatatable.Clear();
+            //objDatatable.Clear();
             if (objEntityAddEmployee.EmpID!=null && objEntityAddEmployee.EmpName != null &&
                 objEntityAddEmployee.DepartmentName != null &&
                 objEntityAddEmployee.Location!= null &&
                 objEntityAddEmployee.ContactNo != null)
             {
-                if (objEntityAddEmployee.EmpID < 1000000 ||
-                    objEntityAddEmployee.EmpID > 1999999999)
+                if (objEntityAddEmployee.EmpID < 1000 ||
+                    objEntityAddEmployee.EmpID > 2000000)
                 {
                     return 3;
                 }
@@ -53,7 +61,7 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer {
             objDataParams[3] =
                 new SqlParameter("@Location", SqlDbType.VarChar, 25) {Value = objEntityAddEmployee.Location};
 
-            objDataParams[4] =
+            objDataParams[4] = 
                 new SqlParameter("@ContactNumber", SqlDbType.BigInt) {Value = objEntityAddEmployee.ContactNo};
 
 

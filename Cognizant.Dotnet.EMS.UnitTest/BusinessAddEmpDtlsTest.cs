@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using Cognizant.Dotnet.Ems.EntityLayer;
 using Cognizant.Dotnet.EMS.BusinessLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,7 +18,14 @@ namespace Cognizant.Dotnet.EMS.UnitTest
             objEntityAddEmp = new EntityAddEmployee();
 
         }
+        [TestCleanup]
+        public void Dest()
+        {
+            
+
+        }
         [TestMethod]
+        //[ExpectedException())]
         public void TestBusinessAddEmpDtls1()
         {
             objEntityAddEmp.EmpID = null;
@@ -30,14 +38,24 @@ namespace Cognizant.Dotnet.EMS.UnitTest
         [TestMethod]
         public void TestBusinessAddEmpDtls14()
         {
-            objEntityAddEmp.EmpID = 1999999999;
+            objEntityAddEmp.EmpID = 19999;
             objEntityAddEmp.EmpName = "John Corben";
             objEntityAddEmp.DepartmentName = "Audit";
             objEntityAddEmp.Location = "Dhaka";
             objEntityAddEmp.ContactNo = 2000000000;
-            //Assert.ThrowsException<InvalidOperationException>(() => objBusinessAddEmp.BusinessAddEmpDetails(objEntityAddEmp));
             Assert.AreEqual(3, objBusinessAddEmp.BusinessAddEmpDetails(objEntityAddEmp));
         }
-
+        [TestMethod]        
+        public void TestBusinessAddEmpDtls15()
+        {
+            Random r = new Random();
+            
+            objEntityAddEmp.EmpID = r.Next(1000, 2000000);
+            objEntityAddEmp.EmpName = "John Die";
+            objEntityAddEmp.DepartmentName = "Audit";
+            objEntityAddEmp.Location = "Dhaka";
+            objEntityAddEmp.ContactNo = Convert.ToInt64(01999999999);           
+            Assert.AreEqual(1, objBusinessAddEmp.BusinessAddEmpDetails(objEntityAddEmp));            
+        }
     }
 }

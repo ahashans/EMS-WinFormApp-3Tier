@@ -36,5 +36,3 @@ C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\3
 C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\3-Tier.csproj.CoreCompileInputs.cache
 C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\_3_Tier.AddDeptDtls.resources
 C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\_3_Tier.AddEmployeeDtls.resources
-C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\APP_DATA\EMS.mdf
-C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\bin\Debug\APP_DATA\EMS_log.ldf
