@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using Cognizant.Dotnet.Ems.EntityLayer;
 using Cognizant.Dotnet.Ems.DataLayer;
 
@@ -22,50 +23,72 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer {
         public int ValidateEmpDtlsInfo(EntityAddEmployee objEntityAddEmployee)
         {
             int flag = 0;
-            if (objEntityAddEmployee.EmpID != null && objEntityAddEmployee.EmpName != null &&
-                objEntityAddEmployee.DepartmentName != null &&
-                objEntityAddEmployee.Location != null &&
-                objEntityAddEmployee.ContactNo != null)
+            if (objEntityAddEmployee.EmpID < 1000 ||
+                objEntityAddEmployee.EmpID >= 2000000
+            )
             {
                 if (objEntityAddEmployee.EmpID < 1000 ||
-                    objEntityAddEmployee.EmpID > 2000000)
+                    objEntityAddEmployee.EmpID >= 2000000)
                 {
                     throw new ArgumentOutOfRangeException();
+                }               
+            }
+            if (objEntityAddEmployee.EmpName.Any(char.IsDigit)  || String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName))
+            {
+                if (String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName))
+                {
+                    throw new ArgumentNullException();
                 }
-                if (objEntityAddEmployee.ContactNo < 1500000000 ||
+                else
+                {
+                    throw new ArgumentException();
+                }
+            }
+            if (double.TryParse(objEntityAddEmployee.DepartmentName, out double _) || String.IsNullOrWhiteSpace(objEntityAddEmployee.DepartmentName))
+            {
+                if (String.IsNullOrWhiteSpace(objEntityAddEmployee.DepartmentName))
+                {
+                    throw new ArgumentNullException();
+                }
+                else
+                {
+                    throw new ArgumentException();
+                  }
+            }
+            if (double.TryParse(objEntityAddEmployee.Location, out double _ ) || String.IsNullOrWhiteSpace(objEntityAddEmployee.Location))
+            {
+                if (String.IsNullOrWhiteSpace(objEntityAddEmployee.Location))
+                {
+                    throw new ArgumentNullException();
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
+            }
+            if (objEntityAddEmployee.ContactNo< 1500000000 ||
+                objEntityAddEmployee.ContactNo > 1999999999
+            )
+            {
+                if (objEntityAddEmployee.ContactNo< 1500000000 ||
                     objEntityAddEmployee.ContactNo > 1999999999)
                 {
                     throw new ArgumentOutOfRangeException();
-                }
-                if (int.TryParse(objEntityAddEmployee.EmpName, out int _))
-                {
-                    throw new ArgumentException();
-                }
-                if (int.TryParse(objEntityAddEmployee.Location, out int _))
-                {
-                    throw new ArgumentException();
-                }
-                if (int.TryParse(objEntityAddEmployee.DepartmentName, out int _))
-                {
-                    throw new ArgumentException();
-                }
-            }
-            else
-            {
-                throw new ArgumentNullException();
-            }
+                }                
+            }            
             flag= 1;
             return flag;
         }
         public int BusinessAddEmpDetails(EntityAddEmployee objEntityAddEmployee) {
 
-            //objDatatable.Clear();
             if (ValidateEmpDtlsInfo(objEntityAddEmployee) != 1)
             {
-                return 3;
+                return 4;
             }
             SqlParameter[] objDataParams = new SqlParameter[5];
-            objDataParams[0] = new SqlParameter("@EmpId", SqlDbType.Int) {Value = objEntityAddEmployee.EmpID};
+
+            objDataParams[0] = 
+                new SqlParameter("@EmpId", SqlDbType.Int) {Value = objEntityAddEmployee.EmpID};
 
             objDataParams[1] =
                 new SqlParameter("@EmpName", SqlDbType.VarChar, 25) {Value = objEntityAddEmployee.EmpName};

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 using Cognizant.Dotnet.EMS.BusinessLayer;
 using Cognizant.Dotnet.Ems.EntityLayer;
@@ -13,61 +14,88 @@ namespace _3_Tier
     {
         DataTable dt = new DataTable();
         DataTable dt1 = new DataTable();
-        BusinessAddEmployee Businessobj = new BusinessAddEmployee();
-
+        private BusinessAddEmployee Businessobj;
+        private EntityAddEmployee objEntityAddEmployee;
 
         public AddEmployeeDtls()
         {
             InitializeComponent();
+            objEntityAddEmployee = new EntityAddEmployee();
+            Businessobj = new BusinessAddEmployee();
         }
 
-        public int InsertIntoDb(EntityAddEmployee objEntityAddEmployee)
+        public int ValidateEmpDtlsInfo(string id, string name, string dept, string loc, string cont)
         {
-            if (objEntityAddEmployee.EmpID == null || objEntityAddEmployee.EmpID < 100 ||
-                objEntityAddEmployee.EmpID > 20000)
+            if (int.TryParse(id, out int _) && long.TryParse(cont, out long _))
+            {
+                objEntityAddEmployee.EmpID = Convert.ToInt32(id);
+                objEntityAddEmployee.EmpName = name;
+                objEntityAddEmployee.DepartmentName = dept;
+                objEntityAddEmployee.Location = loc;
+                objEntityAddEmployee.ContactNo = Convert.ToInt64(cont);
+
+                if (objEntityAddEmployee.EmpID < 1000 ||
+                    objEntityAddEmployee.EmpID > 2000000)
+                {
+                    MessageBox.Show("Invalid Employee Id");
+                    return 2;
+                }
+
+                else if (
+                    objEntityAddEmployee.EmpName.Any(char.IsDigit) ||
+                         String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName))
+                {
+                    MessageBox.Show("Invalid Employee Name");
+                    return 2;
+                }
+                else if (double.TryParse(objEntityAddEmployee.Location, out double _) ||
+                         String.IsNullOrWhiteSpace(objEntityAddEmployee.Location))
+                {
+                    MessageBox.Show("Invalid Location");
+                    return 2;
+                }
+                else if (objEntityAddEmployee.DepartmentName == null ||
+                         double.TryParse(objEntityAddEmployee.DepartmentName, out double _) ||
+                         String.IsNullOrWhiteSpace(objEntityAddEmployee.DepartmentName))
+                {
+                    MessageBox.Show("Invalid Department Name");
+                    return 2;
+                }
+                else if (objEntityAddEmployee.ContactNo < 1500000000 ||
+                         objEntityAddEmployee.ContactNo > 1999999999)
+                {
+                    MessageBox.Show("Invalid Contact Number");
+                    return 2;
+                }
+                else
+                {
+                    int res = Businessobj.BusinessAddEmpDetails(objEntityAddEmployee);
+                    return res; 
+                }
+            }
+            else if (!int.TryParse(id, out int _))
             {
                 MessageBox.Show("Invalid Employee Id");
                 return 2;
             }
-            if (objEntityAddEmployee.ContactNo == null || objEntityAddEmployee.ContactNo < 1500000000 ||
-                objEntityAddEmployee.ContactNo > 1999999999)
+            else 
             {
                 MessageBox.Show("Invalid Contact Number");
                 return 2;
             }
-            if (objEntityAddEmployee.EmpName == null || int.TryParse(objEntityAddEmployee.EmpName, out int _))
-            {
-                MessageBox.Show("Invalid Employee Name");
-                return 2;
-            }
-            if (objEntityAddEmployee.Location == null || int.TryParse(objEntityAddEmployee.Location, out int _))
-            {
-                MessageBox.Show("Invalid Location");
-                return 2;
-            }
-            if (objEntityAddEmployee.DepartmentName == null || int.TryParse(objEntityAddEmployee.DepartmentName, out int _))
-            {
-                MessageBox.Show("Invalid Department Name");
-                return 2;
-            }
-            int res = Businessobj.BusinessAddEmpDetails(objEntityAddEmployee);
-            return res;
         }
+
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            EntityAddEmployee Entityobj = new EntityAddEmployee();
-            int result = 0;
-            Entityobj.EmpID = Convert.ToInt32(txtEid.Text);
-            Entityobj.EmpName = txtEname.Text;
-            Entityobj.DepartmentName = cmbDept.Text;
-            Entityobj.Location = Cmbloc.Text;
-            Entityobj.ContactNo = Convert.ToInt64(txtContactno.Text);
-            //result = Businessobj.BusinessAddEmpDetails(Entityobj);
-            result = InsertIntoDb(Entityobj);
-
+            int result = ValidateEmpDtlsInfo(txtEid.Text, txtEname.Text, cmbDept.Text, txtLocation.Text, txtContactno.Text);
             if (result == 1)
             {
-                MessageBox.Show("You have Registered successfully");
+                MessageBox.Show("Registration successfull");
+                txtLocation.Text = "";
+                txtContactno.Text = "";
+                txtEid.Text = "";
+                txtEname.Text = "";
+                cmbDept.SelectedIndex = 0;
             }
             else if (result == 2)
             {
@@ -76,12 +104,17 @@ namespace _3_Tier
             }
             else if (result == 3)
             {
-                MessageBox.Show("Invalid Input occured in Business Layer!");
+                MessageBox.Show("Server Error!");
+
+            }
+            else if (result == 4)
+            {
+                MessageBox.Show("System Error!");
 
             }
             else
             {
-                MessageBox.Show("You have Not Registered successfully"); ;
+                MessageBox.Show("Registration Failed");
             }
             FillData();
         }
@@ -100,10 +133,10 @@ namespace _3_Tier
             cmbDept.DisplayMember = dt.Columns[1].ToString();
             cmbDept.DataSource = dt;
            // cmbDept.ValueMember = Businessobj.BusinessFillDepartment().Columns[1].ToString();
-            dt1 = Businessobj.BusinessFillLocation();
-            Cmbloc.DisplayMember = dt1.Columns[1].ToString();
-
-            Cmbloc.DataSource = dt1;
+//            dt1 = Businessobj.BusinessFillLocation();
+//            Cmbloc.DisplayMember = dt1.Columns[1].ToString();
+//
+//            Cmbloc.DataSource = dt1;
 
         }
     }

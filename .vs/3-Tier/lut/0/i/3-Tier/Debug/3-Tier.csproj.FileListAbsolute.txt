@@ -1,0 +1,11 @@
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\3-Tier\bin\Debug\3-Tier.exe.config
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\3-Tier\bin\Debug\3-Tier.exe
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\3-Tier\bin\Debug\3-Tier.pdb
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\3-Tier\Debug\3-Tier.csprojResolveAssemblyReference.cache
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\3-Tier\Debug\_3_Tier.AddDeptDtls.resources
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\3-Tier\Debug\_3_Tier.AddEmployeeDtls.resources
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\3-Tier\Debug\_3_Tier.Properties.Resources.resources
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\3-Tier\Debug\3-Tier.csproj.GenerateResource.Cache
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\3-Tier\Debug\3-Tier.csproj.CoreCompileInputs.cache
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\3-Tier\Debug\3-Tier.exe
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\3-Tier\Debug\3-Tier.pdb

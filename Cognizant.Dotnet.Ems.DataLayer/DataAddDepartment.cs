@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -6,22 +7,40 @@ namespace Cognizant.Dotnet.Ems.DataLayer
 {
     public class DataAddDepartment
     {
-        private static readonly string conStr = ConfigurationManager.AppSettings["Connection"];
-
-        SqlConnection objConnnection = new SqlConnection(conStr);
+        private static string conStr;
+        private SqlConnection objConnnection;
         SqlCommand objCommand;
         SqlDataAdapter objAdapter;
-        DataSet objDataSet = new DataSet();
+        DataSet objDataSet;
+        public DataAddDepartment()
+        {
+            conStr = ConfigurationManager.AppSettings["Connection"];
+            objConnnection = new SqlConnection(conStr);
+            objDataSet = new DataSet();
+            objDataSet = new DataSet();
+        }
+        
+
 
         public int DataAddDepartmentDetails(SqlParameter[] objParams)
         {
-            objCommand = new SqlCommand("USPAddDept", objConnnection) {CommandType = CommandType.StoredProcedure};
+            objCommand = new SqlCommand("USPAddDept");
+            objCommand.Connection = objConnnection;
+            objCommand.CommandType = CommandType.StoredProcedure;
 
 
             objCommand.Parameters.AddRange(objParams);
             objConnnection.Open();
 
-            var result = objCommand.ExecuteNonQuery();
+            int result;
+            try
+            {
+                result = objCommand.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
             objConnnection.Close();
             return result;
 

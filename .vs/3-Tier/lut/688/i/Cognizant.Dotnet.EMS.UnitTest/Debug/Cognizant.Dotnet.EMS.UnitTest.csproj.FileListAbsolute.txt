@@ -1,0 +1,10 @@
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\Cognizant.Dotnet.EMS.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\Cognizant.Dotnet.EMS.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\Cognizant.Dotnet.EMS.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\Cognizant.Dotnet.EMS.UnitTest\bin\Debug\Cognizant.Dotnet.EMS.UnitTest.dll.config
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\Cognizant.Dotnet.EMS.UnitTest\bin\Debug\Cognizant.Dotnet.EMS.UnitTest.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\Cognizant.Dotnet.EMS.UnitTest\bin\Debug\Cognizant.Dotnet.EMS.UnitTest.pdb
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\Cognizant.Dotnet.EMS.UnitTest\Debug\Cognizant.Dotnet.EMS.UnitTest.csprojResolveAssemblyReference.cache
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\Cognizant.Dotnet.EMS.UnitTest\Debug\Cognizant.Dotnet.EMS.UnitTest.csproj.CoreCompileInputs.cache
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\Cognizant.Dotnet.EMS.UnitTest\Debug\Cognizant.Dotnet.EMS.UnitTest.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\Cognizant.Dotnet.EMS.UnitTest\Debug\Cognizant.Dotnet.EMS.UnitTest.pdb

@@ -22,11 +22,8 @@ namespace Cognizant.Dotnet.Ems.DataLayer
             objDataSet = new DataSet();
         }
         public int DataAddEmployeeDetails(SqlParameter[] objParams) {
-//            conStr = ConfigurationManager.AppSettings["Connection"];
-//            objConnnection = new SqlConnection(conStr);
             objCommand = new SqlCommand("USPEmpDtls", objConnnection);
             objCommand.CommandType = CommandType.StoredProcedure;
-
 
             objCommand.Parameters.AddRange(objParams);
             objConnnection.Open();
@@ -39,13 +36,11 @@ namespace Cognizant.Dotnet.Ems.DataLayer
             }
             catch (SqlException e)
             {
-                throw new InvalidOperationException();
+                return 3;
             }
             //result = objCommand.ExecuteNonQuery();
             objConnnection.Close();
             return result;
-
-
         }
         public DataSet DataFillDeptDetails()
         {

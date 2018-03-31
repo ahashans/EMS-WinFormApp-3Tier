@@ -1,0 +1,5 @@
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\Cognizant.Dotnet.Ems.EntityLayer\bin\Debug\Cognizant.Dotnet.Ems.EntityLayer.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\Cognizant.Dotnet.Ems.EntityLayer\bin\Debug\Cognizant.Dotnet.Ems.EntityLayer.pdb
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\Cognizant.Dotnet.Ems.EntityLayer\Debug\Cognizant.Dotnet.Ems.EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\Cognizant.Dotnet.Ems.EntityLayer\Debug\Cognizant.Dotnet.Ems.EntityLayer.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\Cognizant.Dotnet.Ems.EntityLayer\Debug\Cognizant.Dotnet.Ems.EntityLayer.pdb

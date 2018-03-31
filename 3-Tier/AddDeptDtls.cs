@@ -14,8 +14,9 @@ namespace _3_Tier
         public AddDeptDtls()
         {
             InitializeComponent();
+            objEntityAddDept = new EntityAddDepartment();
+            Businessobj = new BusinessAddDepartment();
         }
-
         public void FillData()
         {
             dt = new DataTable();
@@ -32,21 +33,71 @@ namespace _3_Tier
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            StoreData(Convert.ToInt32(txtDeptId.Text),txtDeptName.Text, Convert.ToDouble(txtDeptSal.Text), cmbxLocation.Text);
+            StoreData(txtDeptId.Text,txtDeptName.Text, txtDeptSal.Text, cmbxLocation.Text);
+            FillData();
         }
 
-        public void StoreData(int id, string name, double sal, string loc)
+        public void StoreData(string id, string name, string sal, string loc)
         {
-            Businessobj = new BusinessAddDepartment();
-            objEntityAddDept = new EntityAddDepartment
+            int result =0;
+            if (int.TryParse(id, out int _) && double.TryParse(sal, out double _))
             {
-                DeptId = id,
-                DeptName = name,
-                DeptSal = sal,
-                DeptLoc = loc
-            };
-            var result = Businessobj.BusinessAddDeptDtls(objEntityAddDept);
-            MessageBox.Show(result == 1 ? "Department Successfully Added" : "Error occured. Department not Added.");
+                objEntityAddDept = new EntityAddDepartment
+                {
+                    DeptId = Convert.ToInt32(id),
+                    DeptName = name,
+                    DeptSal = Convert.ToDouble(sal),
+                    DeptLoc = loc
+                };
+                if (objEntityAddDept.DeptId < 1000 ||
+                    objEntityAddDept.DeptId > 1999)
+                {
+                    MessageBox.Show("Invalid Department Id");
+                }
+                else if (double.TryParse(objEntityAddDept.DeptName, out double _) || String.IsNullOrWhiteSpace(objEntityAddDept.DeptName))
+                {
+                    MessageBox.Show("Invalid Department Name");
+                }
+
+                else if (objEntityAddDept.DeptSal < 10000 ||
+                    objEntityAddDept.DeptSal > 1000000)
+                {
+                    MessageBox.Show("Invalid Salary");
+                }
+                else if (double.TryParse(objEntityAddDept.DeptLoc, out double _) || String.IsNullOrWhiteSpace(objEntityAddDept.DeptLoc))
+                {
+                    MessageBox.Show("Invalid Location");
+                }
+                else
+                {
+                    result = Businessobj.BusinessAddDeptDtls(objEntityAddDept);
+                    if (result == 0)
+                    {
+                        MessageBox.Show("Error occured. Department not Added.");
+                    }
+                    else if (result == 1)
+                    {
+                        MessageBox.Show("Department Successfully Added");
+                    }
+                    else if (result == 3)
+                    {
+                        MessageBox.Show("Program Error Occurred");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Database Error Occurred");
+                    }
+                }
+            }
+            else if (!int.TryParse(id, out int _))
+            {
+                MessageBox.Show("Invalid Department Id");
+            }
+            else if (!double.TryParse(sal, out double _))
+            {
+                MessageBox.Show("Invalid Department Salary");
+            }
+                        
         }
     }
 }

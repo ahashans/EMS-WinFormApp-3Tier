@@ -1,0 +1,6 @@
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\Cognizant.Dotnet.EMS.BusinessLayer\bin\Debug\Cognizant.Dotnet.EMS.BusinessLayer.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\b\Cognizant.Dotnet.EMS.BusinessLayer\bin\Debug\Cognizant.Dotnet.EMS.BusinessLayer.pdb
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\Cognizant.Dotnet.EMS.BusinessLayer\Debug\Cognizant.Dotnet.EMS.BusinessLayer.csprojResolveAssemblyReference.cache
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\Cognizant.Dotnet.EMS.BusinessLayer\Debug\Cognizant.Dotnet.EMS.BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\Cognizant.Dotnet.EMS.BusinessLayer\Debug\Cognizant.Dotnet.EMS.BusinessLayer.dll
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\.vs\3-Tier\lut\0\i\Cognizant.Dotnet.EMS.BusinessLayer\Debug\Cognizant.Dotnet.EMS.BusinessLayer.pdb

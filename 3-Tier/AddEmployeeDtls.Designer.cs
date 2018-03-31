@@ -36,16 +36,16 @@
             this.txtEname = new System.Windows.Forms.TextBox();
             this.txtContactno = new System.Windows.Forms.TextBox();
             this.txtEid = new System.Windows.Forms.TextBox();
-            this.cmbDept = new System.Windows.Forms.ComboBox();
-            this.Cmbloc = new System.Windows.Forms.ComboBox();
             this.btnRegister = new System.Windows.Forms.Button();
+            this.cmbDept = new System.Windows.Forms.ComboBox();
+            this.txtLocation = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblEmpname
             // 
             this.lblEmpname.AutoSize = true;
             this.lblEmpname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmpname.Location = new System.Drawing.Point(34, 18);
+            this.lblEmpname.Location = new System.Drawing.Point(34, 80);
             this.lblEmpname.Name = "lblEmpname";
             this.lblEmpname.Size = new System.Drawing.Size(80, 17);
             this.lblEmpname.TabIndex = 0;
@@ -55,7 +55,7 @@
             // 
             this.lblEmpid.AutoSize = true;
             this.lblEmpid.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmpid.Location = new System.Drawing.Point(34, 70);
+            this.lblEmpid.Location = new System.Drawing.Point(34, 26);
             this.lblEmpid.Name = "lblEmpid";
             this.lblEmpid.Size = new System.Drawing.Size(54, 17);
             this.lblEmpid.TabIndex = 1;
@@ -93,7 +93,7 @@
             // 
             // txtEname
             // 
-            this.txtEname.Location = new System.Drawing.Point(152, 18);
+            this.txtEname.Location = new System.Drawing.Point(152, 80);
             this.txtEname.Name = "txtEname";
             this.txtEname.Size = new System.Drawing.Size(121, 20);
             this.txtEname.TabIndex = 5;
@@ -107,26 +107,10 @@
             // 
             // txtEid
             // 
-            this.txtEid.Location = new System.Drawing.Point(152, 70);
+            this.txtEid.Location = new System.Drawing.Point(152, 26);
             this.txtEid.Name = "txtEid";
             this.txtEid.Size = new System.Drawing.Size(121, 20);
             this.txtEid.TabIndex = 7;
-            // 
-            // cmbDept
-            // 
-            this.cmbDept.FormattingEnabled = true;
-            this.cmbDept.Location = new System.Drawing.Point(152, 130);
-            this.cmbDept.Name = "cmbDept";
-            this.cmbDept.Size = new System.Drawing.Size(121, 21);
-            this.cmbDept.TabIndex = 8;
-            // 
-            // Cmbloc
-            // 
-            this.Cmbloc.FormattingEnabled = true;
-            this.Cmbloc.Location = new System.Drawing.Point(152, 192);
-            this.Cmbloc.Name = "Cmbloc";
-            this.Cmbloc.Size = new System.Drawing.Size(121, 21);
-            this.Cmbloc.TabIndex = 9;
             // 
             // btnRegister
             // 
@@ -138,13 +122,28 @@
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
-            // Form1
+            // cmbDept
+            // 
+            this.cmbDept.FormattingEnabled = true;
+            this.cmbDept.Location = new System.Drawing.Point(152, 130);
+            this.cmbDept.Name = "cmbDept";
+            this.cmbDept.Size = new System.Drawing.Size(121, 21);
+            this.cmbDept.TabIndex = 8;
+            // 
+            // txtLocation
+            // 
+            this.txtLocation.Location = new System.Drawing.Point(152, 192);
+            this.txtLocation.Name = "txtLocation";
+            this.txtLocation.Size = new System.Drawing.Size(453, 20);
+            this.txtLocation.TabIndex = 11;
+            // 
+            // AddEmployeeDtls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(768, 376);
+            this.Controls.Add(this.txtLocation);
             this.Controls.Add(this.btnRegister);
-            this.Controls.Add(this.Cmbloc);
             this.Controls.Add(this.cmbDept);
             this.Controls.Add(this.txtEid);
             this.Controls.Add(this.txtContactno);
@@ -154,7 +153,7 @@
             this.Controls.Add(this.lblDept);
             this.Controls.Add(this.lblEmpid);
             this.Controls.Add(this.lblEmpname);
-            this.Name = "Form1";
+            this.Name = "AddEmployeeDtls";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -172,9 +171,9 @@
         private System.Windows.Forms.TextBox txtEname;
         private System.Windows.Forms.TextBox txtContactno;
         private System.Windows.Forms.TextBox txtEid;
-        private System.Windows.Forms.ComboBox cmbDept;
-        private System.Windows.Forms.ComboBox Cmbloc;
         private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.ComboBox cmbDept;
+        private System.Windows.Forms.TextBox txtLocation;
     }
 }
 

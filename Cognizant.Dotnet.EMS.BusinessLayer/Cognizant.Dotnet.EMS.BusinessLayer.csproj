@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BusinessAddDepartment.cs" />
     <Compile Include="BusinessAddEmployee.cs" />
+    <Compile Include="BusinessViewEmpDtls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
