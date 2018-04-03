@@ -36,6 +36,7 @@ namespace _3_Tier
             dtgvEmpDtls.Refresh();
             if (Res == 1)
             {
+                Businessobj = new BusinessViewEmpDtls();
                 dt1 = Businessobj.BusinessFillEmpDtls(cmbxDept.Text);
                 if (dt1.Rows.Count > 0)
                 {
@@ -51,7 +52,8 @@ namespace _3_Tier
             }
         }
         private void FillData()
-        {            
+        {
+            Businessobj = new BusinessViewEmpDtls();
             dt = Businessobj.BusinessFillDepartment();
             cmbxDept.DisplayMember = dt.Columns[1].ToString();
             cmbxDept.DataSource = dt;            

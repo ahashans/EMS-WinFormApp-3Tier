@@ -34,12 +34,17 @@ namespace Cognizant.Dotnet.Ems.DataLayer
             {
                 result = objCommand.ExecuteNonQuery();
             }
-            catch (SqlException e)
+            catch (SqlException)
             {
+                objConnnection.Close();
                 return 3;
             }
+            finally
+            {
+                objConnnection.Close();
+            }
             //result = objCommand.ExecuteNonQuery();
-            objConnnection.Close();
+            //objConnnection.Close();
             return result;
         }
         public DataSet DataFillDeptDetails()
@@ -47,8 +52,24 @@ namespace Cognizant.Dotnet.Ems.DataLayer
             objCommand = new SqlCommand("USPDept");
             objCommand.Connection = objConnnection;
             objCommand.CommandType = CommandType.StoredProcedure;
-            objConnnection.Open();
-            objAdapter = new SqlDataAdapter(objCommand);
+            try
+            {
+                if (objConnnection.State != ConnectionState.Open)
+                {
+                    objConnnection.Close();
+                    objConnnection.Open();
+                }
+                objAdapter = new SqlDataAdapter(objCommand);
+            }
+            catch (Exception e)
+            {
+                objConnnection.Close();
+                //throw e;
+            }
+            finally
+            {
+                objConnnection.Close();
+            }
             objAdapter.Fill(objDataSet, "Department");
             objConnnection.Close();
             return objDataSet;

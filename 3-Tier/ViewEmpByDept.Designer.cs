@@ -69,7 +69,7 @@
             this.Controls.Add(this.cmbxDept);
             this.Controls.Add(this.lblDept);
             this.Name = "ViewEmpByDept";
-            this.Text = "ViewEmpByDept";
+            this.Text = "View Employee Details By Department Name";
             this.Load += new System.EventHandler(this.ViewEmpByDept_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvEmpDtls)).EndInit();
             this.ResumeLayout(false);

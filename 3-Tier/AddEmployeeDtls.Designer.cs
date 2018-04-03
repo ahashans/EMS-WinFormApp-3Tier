@@ -154,7 +154,7 @@
             this.Controls.Add(this.lblEmpid);
             this.Controls.Add(this.lblEmpname);
             this.Name = "AddEmployeeDtls";
-            this.Text = "Form1";
+            this.Text = "Add Employee Details";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

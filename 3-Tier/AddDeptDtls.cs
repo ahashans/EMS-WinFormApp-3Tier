@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Cognizant.Dotnet.EMS.BusinessLayer;
 using Cognizant.Dotnet.Ems.EntityLayer;
@@ -40,33 +42,42 @@ namespace _3_Tier
         public void StoreData(string id, string name, string sal, string loc)
         {
             int result =0;
+            var reg = new Regex("^[a-zA-Z ]*$");
             if (int.TryParse(id, out int _) && double.TryParse(sal, out double _))
             {
                 objEntityAddDept = new EntityAddDepartment
                 {
                     DeptId = Convert.ToInt32(id),
-                    DeptName = name,
+                    DeptName = name.Trim(),
                     DeptSal = Convert.ToDouble(sal),
                     DeptLoc = loc
                 };
                 if (objEntityAddDept.DeptId < 1000 ||
                     objEntityAddDept.DeptId > 1999)
                 {
-                    MessageBox.Show("Invalid Department Id");
+                    MessageBox.Show("Invalid Department Id. Must be an int between 1000 to 1999");
                 }
-                else if (double.TryParse(objEntityAddDept.DeptName, out double _) || String.IsNullOrWhiteSpace(objEntityAddDept.DeptName))
+                else if (!reg.IsMatch(objEntityAddDept.DeptName) || String.IsNullOrWhiteSpace(objEntityAddDept.DeptName))
                 {
-                    MessageBox.Show("Invalid Department Name");
+                    if (objEntityAddDept.DeptName.Any(char.IsDigit))
+                    {
+                        MessageBox.Show("Invalid Department Name. Only Alphabets allowed!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Department Name. Null/Empty Not Allowed!");
+                    }
                 }
 
                 else if (objEntityAddDept.DeptSal < 10000 ||
                     objEntityAddDept.DeptSal > 1000000)
                 {
-                    MessageBox.Show("Invalid Salary");
+                    MessageBox.Show("Invalid Salary. Must be an int in between 10000 and 1000000!");
                 }
-                else if (double.TryParse(objEntityAddDept.DeptLoc, out double _) || String.IsNullOrWhiteSpace(objEntityAddDept.DeptLoc))
+                else if (String.IsNullOrWhiteSpace(objEntityAddDept.DeptLoc))
                 {
-                    MessageBox.Show("Invalid Location");
+                    MessageBox.Show("Invalid Location. Null/Empty not allowed!");
+                  
                 }
                 else
                 {
@@ -85,17 +96,17 @@ namespace _3_Tier
                     }
                     else
                     {
-                        MessageBox.Show("Database Error Occurred");
+                        MessageBox.Show("Department Id already Exist!");
                     }
                 }
             }
             else if (!int.TryParse(id, out int _))
             {
-                MessageBox.Show("Invalid Department Id");
+                MessageBox.Show("Invalid Department Id. Must be only Numbers!");
             }
             else if (!double.TryParse(sal, out double _))
             {
-                MessageBox.Show("Invalid Department Salary");
+                MessageBox.Show("Invalid Department Salary Must be only Digits!");
             }
                         
         }

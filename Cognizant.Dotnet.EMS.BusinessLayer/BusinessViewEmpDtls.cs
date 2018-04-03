@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using Cognizant.Dotnet.Ems.DataLayer;
 
 namespace Cognizant.Dotnet.EMS.BusinessLayer
@@ -28,7 +29,8 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer
         public int ValidateDeptName(string DeptName)
         {
             int res = 0;
-            if (String.IsNullOrWhiteSpace(DeptName))
+            var reg = new Regex("^[a-zA-Z ]*$");
+            if (!reg.IsMatch(DeptName) ||String.IsNullOrWhiteSpace(DeptName))
             {
                 throw new ArgumentNullException();
             }

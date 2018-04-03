@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using Cognizant.Dotnet.Ems.DataLayer;
 using Cognizant.Dotnet.Ems.EntityLayer;
 
@@ -19,13 +20,14 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer
 
         public int ValidateDeptDtls(EntityAddDepartment objEntityAddDept)
         {
+            var reg = new Regex("^[a-zA-Z ]*$");
             int res = 0;
             if (objEntityAddDept.DeptId < 1000 ||
                 objEntityAddDept.DeptId > 1999)
             {
                 throw new ArgumentOutOfRangeException();
             }
-            else if (double.TryParse(objEntityAddDept.DeptName, out double _) ||
+            else if (!reg.IsMatch(objEntityAddDept.DeptName) ||
                      String.IsNullOrWhiteSpace(objEntityAddDept.DeptName))
             {
                 if (String.IsNullOrWhiteSpace(objEntityAddDept.DeptName))

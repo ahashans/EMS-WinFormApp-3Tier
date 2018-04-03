@@ -15,7 +15,8 @@ namespace _3_Tier
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new AddEmployeeDtls());
             //Application.Run(new AddDeptDtls());
-            Application.Run(new ViewEmpByDept());
+            //Application.Run(new ViewEmpByDept());
+            Application.Run(new Home());
         }
     }
 }

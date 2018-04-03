@@ -129,7 +129,7 @@
             this.Controls.Add(this.txtDeptId);
             this.Controls.Add(this.lblDeptId);
             this.Name = "AddDeptDtls";
-            this.Text = "AddDeptDtls";
+            this.Text = "Add Department Details";
             this.Load += new System.EventHandler(this.AddDeptDtls_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

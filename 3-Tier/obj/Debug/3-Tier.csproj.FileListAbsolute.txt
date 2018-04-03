@@ -37,3 +37,4 @@ C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\3
 C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\_3_Tier.AddDeptDtls.resources
 C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\_3_Tier.AddEmployeeDtls.resources
 C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\_3_Tier.ViewEmpByDept.resources
+C:\Users\Ahashan\Documents\Visual Studio 2015\Projects\3-Tier\3-Tier\obj\Debug\_3_Tier.Home.resources

@@ -39,6 +39,7 @@ namespace Cognizant.Dotnet.Ems.DataLayer
             }
             catch (SqlException e)
             {
+                objConnnection.Close();
                 throw e;
             }
             objConnnection.Close();

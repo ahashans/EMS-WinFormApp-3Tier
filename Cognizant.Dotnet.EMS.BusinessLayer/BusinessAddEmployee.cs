@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Cognizant.Dotnet.Ems.EntityLayer;
 using Cognizant.Dotnet.Ems.DataLayer;
 
@@ -23,6 +24,7 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer {
         public int ValidateEmpDtlsInfo(EntityAddEmployee objEntityAddEmployee)
         {
             int flag = 0;
+            var reg = new Regex("^[a-zA-Z ]*$");
             if (objEntityAddEmployee.EmpID < 1000 ||
                 objEntityAddEmployee.EmpID >= 2000000
             )
@@ -33,7 +35,7 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer {
                     throw new ArgumentOutOfRangeException();
                 }               
             }
-            if (objEntityAddEmployee.EmpName.Any(char.IsDigit)  || String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName))
+            if (!reg.IsMatch(objEntityAddEmployee.EmpName)  || String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName))
             {
                 if (String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName))
                 {

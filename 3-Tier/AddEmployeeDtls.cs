@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Cognizant.Dotnet.EMS.BusinessLayer;
 using Cognizant.Dotnet.Ems.EntityLayer;
@@ -26,6 +27,7 @@ namespace _3_Tier
 
         public int ValidateEmpDtlsInfo(string id, string name, string dept, string loc, string cont)
         {
+            var reg = new Regex("^[a-zA-Z ]*$");
             if (int.TryParse(id, out int _) && long.TryParse(cont, out long _))
             {
                 objEntityAddEmployee.EmpID = Convert.ToInt32(id);
@@ -37,50 +39,63 @@ namespace _3_Tier
                 if (objEntityAddEmployee.EmpID < 1000 ||
                     objEntityAddEmployee.EmpID > 2000000)
                 {
-                    MessageBox.Show("Invalid Employee Id");
+                    MessageBox.Show("Invalid Employee Id. Must be an int in between 10000 to 2000000.");
                     return 2;
                 }
 
                 else if (
-                    objEntityAddEmployee.EmpName.Any(char.IsDigit) ||
+                    !reg.IsMatch(objEntityAddEmployee.EmpName) ||
                          String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName))
                 {
-                    MessageBox.Show("Invalid Employee Name");
+                    if (!reg.IsMatch(objEntityAddEmployee.EmpName))
+                    {
+                        MessageBox.Show("Invalid Employee Name. Only letters and space allowed!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Employee Name. Empty field not allowed");
+                    }
                     return 2;
                 }
                 else if (double.TryParse(objEntityAddEmployee.Location, out double _) ||
                          String.IsNullOrWhiteSpace(objEntityAddEmployee.Location))
                 {
-                    MessageBox.Show("Invalid Location");
+                    if (double.TryParse(objEntityAddEmployee.Location, out double _))
+                    {
+                        MessageBox.Show("Invalid Location. Must contain some alphabets!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid Location. Empty/Null Not allowed!");
+                    }
                     return 2;
                 }
-                else if (objEntityAddEmployee.DepartmentName == null ||
-                         double.TryParse(objEntityAddEmployee.DepartmentName, out double _) ||
-                         String.IsNullOrWhiteSpace(objEntityAddEmployee.DepartmentName))
+                else if (String.IsNullOrWhiteSpace(objEntityAddEmployee.DepartmentName))
                 {
-                    MessageBox.Show("Invalid Department Name");
+                    MessageBox.Show("Invalid Department Name. Please Select a Department!");
                     return 2;
                 }
                 else if (objEntityAddEmployee.ContactNo < 1500000000 ||
                          objEntityAddEmployee.ContactNo > 1999999999)
                 {
-                    MessageBox.Show("Invalid Contact Number");
+                    MessageBox.Show("Invalid Contact Number. Must be an int in between 01500000000 and 01999999999");
                     return 2;
                 }
                 else
                 {
-                    int res = Businessobj.BusinessAddEmpDetails(objEntityAddEmployee);
+                    BusinessAddEmployee objBusinessAddEmpDtls = new BusinessAddEmployee();
+                    int res = objBusinessAddEmpDtls.BusinessAddEmpDetails(objEntityAddEmployee);
                     return res; 
                 }
             }
             else if (!int.TryParse(id, out int _))
             {
-                MessageBox.Show("Invalid Employee Id");
+                MessageBox.Show("Invalid Employee Id. Empty/Null Not allowed!");
                 return 2;
             }
             else 
             {
-                MessageBox.Show("Invalid Contact Number");
+                MessageBox.Show("Invalid Contact Number. Empty/Null Not allowed!");
                 return 2;
             }
         }
@@ -104,7 +119,7 @@ namespace _3_Tier
             }
             else if (result == 3)
             {
-                MessageBox.Show("Server Error!");
+                MessageBox.Show("Employee Id already exist!");
 
             }
             else if (result == 4)
@@ -129,7 +144,8 @@ namespace _3_Tier
        private void FillData()
         {
             //cmbDept.ValueMember = Businessobj.BusinessFillDepartment().Columns[1].ToString();
-            dt = Businessobj.BusinessFillDepartment();
+            BusinessAddEmployee objBusinessAddEmpDtls = new BusinessAddEmployee();
+            dt = objBusinessAddEmpDtls.BusinessFillDepartment();
             cmbDept.DisplayMember = dt.Columns[1].ToString();
             cmbDept.DataSource = dt;
            // cmbDept.ValueMember = Businessobj.BusinessFillDepartment().Columns[1].ToString();
