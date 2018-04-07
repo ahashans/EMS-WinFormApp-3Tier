@@ -45,21 +45,21 @@
             // 
             this.lblEmpname.AutoSize = true;
             this.lblEmpname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmpname.Location = new System.Drawing.Point(34, 80);
+            this.lblEmpname.Location = new System.Drawing.Point(22, 80);
             this.lblEmpname.Name = "lblEmpname";
-            this.lblEmpname.Size = new System.Drawing.Size(80, 17);
+            this.lblEmpname.Size = new System.Drawing.Size(124, 17);
             this.lblEmpname.TabIndex = 0;
-            this.lblEmpname.Text = "EmpName";
+            this.lblEmpname.Text = "Employee Name";
             // 
             // lblEmpid
             // 
             this.lblEmpid.AutoSize = true;
             this.lblEmpid.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmpid.Location = new System.Drawing.Point(34, 26);
+            this.lblEmpid.Location = new System.Drawing.Point(25, 26);
             this.lblEmpid.Name = "lblEmpid";
-            this.lblEmpid.Size = new System.Drawing.Size(54, 17);
+            this.lblEmpid.Size = new System.Drawing.Size(98, 17);
             this.lblEmpid.TabIndex = 1;
-            this.lblEmpid.Text = "EmpID";
+            this.lblEmpid.Text = "Employee ID";
             // 
             // lblDept
             // 
@@ -109,6 +109,7 @@
             // 
             this.txtEid.Location = new System.Drawing.Point(152, 26);
             this.txtEid.Name = "txtEid";
+            this.txtEid.ReadOnly = true;
             this.txtEid.Size = new System.Drawing.Size(121, 20);
             this.txtEid.TabIndex = 7;
             // 

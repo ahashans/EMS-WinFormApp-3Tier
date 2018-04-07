@@ -43,11 +43,22 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer
         public DataTable BusinessFillEmpDtls(string DeptName)
         {
             int DeptNameStatus = ValidateDeptName(DeptName);
-            objDatatable1.Clear();
-            SqlParameter DataParamDeptName = new SqlParameter("@DeptName", SqlDbType.VarChar, 25) { Value = DeptName };
+            if (DeptNameStatus == 1)
+            {
+                objDatatable1.Clear();
+                SqlParameter DataParamDeptName = new SqlParameter("@DeptName", SqlDbType.VarChar, 25) { Value = DeptName };
 
-         objDatatable1 = objDataViewEmpDtls.DataFillEmpDtls(DataParamDeptName).Tables["EmpInfo"];
+                try
+                {
+                    objDatatable1 = objDataViewEmpDtls.DataFillEmpDtls(DataParamDeptName).Tables["EmpInfo"];
+                }
+                catch (SqlException e)
+                {
+                    throw new Exception();
+                }
 
+                
+            }
             return objDatatable1;
         }
     }

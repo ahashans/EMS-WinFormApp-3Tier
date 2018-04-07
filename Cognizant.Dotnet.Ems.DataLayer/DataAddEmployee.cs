@@ -64,7 +64,7 @@ namespace Cognizant.Dotnet.Ems.DataLayer
             catch (Exception e)
             {
                 objConnnection.Close();
-                //throw e;
+                throw e;
             }
             finally
             {
@@ -76,14 +76,24 @@ namespace Cognizant.Dotnet.Ems.DataLayer
 
         }
 
-        public DataSet DataFillLocationDetails() {
-            objCommand = new SqlCommand("USPLocation", objConnnection) {CommandType = CommandType.StoredProcedure};
-            objConnnection.Open();
-            objAdapter = new SqlDataAdapter(objCommand);
-            objAdapter.Fill(objDataSet, "Location");
-            objConnnection.Close();
-            return objDataSet;
+        public SqlParameter DataGetLastEmpId(SqlParameter EmpId)
+        {
 
+            objCommand = new SqlCommand("USPGetLastEmptId", objConnnection) { CommandType = CommandType.StoredProcedure };
+            objCommand.Parameters.Add(EmpId);
+            objConnnection.Open();
+            int result;
+            try
+            {
+                result = objCommand.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                objConnnection.Close();
+                throw e;
+            }
+            objConnnection.Close();
+            return objCommand.Parameters["@EmpId"];
         }
 
 

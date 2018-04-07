@@ -22,17 +22,16 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer
         {
             var reg = new Regex("^[a-zA-Z ]*$");
             int res = 0;
-            if (objEntityAddDept.DeptId < 1000 ||
-                objEntityAddDept.DeptId > 1999)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            else if (!reg.IsMatch(objEntityAddDept.DeptName) ||
-                     String.IsNullOrWhiteSpace(objEntityAddDept.DeptName))
+            if (!reg.IsMatch(objEntityAddDept.DeptName) ||
+                     String.IsNullOrWhiteSpace(objEntityAddDept.DeptName) || objEntityAddDept.DeptName.Length>25)
             {
                 if (String.IsNullOrWhiteSpace(objEntityAddDept.DeptName))
                 {
                     throw new ArgumentNullException();
+                }
+                else if (objEntityAddDept.DeptName.Length > 25)
+                {
+                    throw new ArgumentOutOfRangeException();
                 }
                 else
                     throw new ArgumentException();
@@ -63,21 +62,19 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer
         {
             if (ValidateDeptDtls(objEntityAddDept)==1)
             {
-                SqlParameter[] objDataParams = new SqlParameter[4];
-                objDataParams[0] = new SqlParameter("@DeptId", SqlDbType.Int) { Value = objEntityAddDept.DeptId };
-
-                objDataParams[1] =
+                SqlParameter[] objDataParams = new SqlParameter[3];               
+                objDataParams[0] =
                     new SqlParameter("@DeptName", SqlDbType.VarChar, 25) { Value = objEntityAddDept.DeptName };
 
 
-                objDataParams[2] =
+                objDataParams[1] =
                     new SqlParameter("@DeptSalary", SqlDbType.VarChar, 25) { Value = objEntityAddDept.DeptSal };
 
-                objDataParams[3] =
+                objDataParams[2] =
                     new SqlParameter("@DeptLocation", SqlDbType.VarChar, 25) { Value = objEntityAddDept.DeptLoc };
 
 
-                int result = 0;
+                int result;
                 try
                 {
                     result = objDataAddDept.DataAddDepartmentDetails(objDataParams);
@@ -96,6 +93,23 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer
             objDatatable.Clear();
             objDatatable = objDataAddDept.DataFillLocationDetails().Tables["Location"];
             return objDatatable;
+        }
+
+        public int BusinessGetLastDeptId()
+        {
+            SqlParameter deptId = new SqlParameter("@DeptId", SqlDbType.Int) {Direction = ParameterDirection.Output};
+            DataAddDepartment objDataAddDepartment  = new DataAddDepartment();
+
+            try
+            {
+                deptId = objDataAddDepartment.DataGetLastDeptId(deptId);
+            }
+            catch (SqlException)
+            {                
+                throw new InvalidOperationException();
+            }
+            int DeptId = (int)deptId.Value;
+            return DeptId;  
         }
     }
 }

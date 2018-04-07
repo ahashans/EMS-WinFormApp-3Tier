@@ -25,31 +25,25 @@ namespace _3_Tier
             Businessobj = new BusinessAddEmployee();
         }
 
-        public int ValidateEmpDtlsInfo(string id, string name, string dept, string loc, string cont)
+        public int ValidateEmpDtlsInfo(string name, string dept, string loc, string cont)
         {
             var reg = new Regex("^[a-zA-Z ]*$");
-            if (int.TryParse(id, out int _) && long.TryParse(cont, out long _))
-            {
-                objEntityAddEmployee.EmpID = Convert.ToInt32(id);
+            if (long.TryParse(cont, out long _))
+            {                
                 objEntityAddEmployee.EmpName = name;
                 objEntityAddEmployee.DepartmentName = dept;
                 objEntityAddEmployee.Location = loc;
                 objEntityAddEmployee.ContactNo = Convert.ToInt64(cont);
-
-                if (objEntityAddEmployee.EmpID < 1000 ||
-                    objEntityAddEmployee.EmpID > 2000000)
-                {
-                    MessageBox.Show("Invalid Employee Id. Must be an int in between 10000 to 2000000.");
-                    return 2;
-                }
-
-                else if (
-                    !reg.IsMatch(objEntityAddEmployee.EmpName) ||
-                         String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName))
+                if (!reg.IsMatch(objEntityAddEmployee.EmpName) ||
+                         String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName)|| objEntityAddEmployee.EmpName.Length>30)
                 {
                     if (!reg.IsMatch(objEntityAddEmployee.EmpName))
                     {
                         MessageBox.Show("Invalid Employee Name. Only letters and space allowed!");
+                    }
+                    else if (objEntityAddEmployee.EmpName.Length > 30)
+                    {
+                        MessageBox.Show("Employee Name must be less than 30 characters");
                     }
                     else
                     {
@@ -58,11 +52,15 @@ namespace _3_Tier
                     return 2;
                 }
                 else if (double.TryParse(objEntityAddEmployee.Location, out double _) ||
-                         String.IsNullOrWhiteSpace(objEntityAddEmployee.Location))
+                         String.IsNullOrWhiteSpace(objEntityAddEmployee.Location) || objEntityAddEmployee.Location.Length>250)
                 {
                     if (double.TryParse(objEntityAddEmployee.Location, out double _))
                     {
                         MessageBox.Show("Invalid Location. Must contain some alphabets!");
+                    }
+                    else if (objEntityAddEmployee.Location.Length > 250)
+                    {
+                        MessageBox.Show("Location Must be less than 250 characters");
                     }
                     else
                     {
@@ -87,28 +85,22 @@ namespace _3_Tier
                     int res = objBusinessAddEmpDtls.BusinessAddEmpDetails(objEntityAddEmployee);
                     return res; 
                 }
-            }
-            else if (!int.TryParse(id, out int _))
-            {
-                MessageBox.Show("Invalid Employee Id. Empty/Null Not allowed!");
-                return 2;
-            }
+            }            
             else 
             {
-                MessageBox.Show("Invalid Contact Number. Empty/Null Not allowed!");
+                MessageBox.Show("Invalid Contact Number. Empty/Null/Alphabets Not allowed!");
                 return 2;
             }
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            int result = ValidateEmpDtlsInfo(txtEid.Text, txtEname.Text, cmbDept.Text, txtLocation.Text, txtContactno.Text);
+            int result = ValidateEmpDtlsInfo(txtEname.Text, cmbDept.Text, txtLocation.Text, txtContactno.Text);
             if (result == 1)
             {
                 MessageBox.Show("Registration successfull");
                 txtLocation.Text = "";
                 txtContactno.Text = "";
-                txtEid.Text = "";
                 txtEname.Text = "";
                 cmbDept.SelectedIndex = 0;
             }
@@ -119,7 +111,7 @@ namespace _3_Tier
             }
             else if (result == 3)
             {
-                MessageBox.Show("Employee Id already exist!");
+                MessageBox.Show("Database Error!");
 
             }
             else if (result == 4)
@@ -142,17 +134,13 @@ namespace _3_Tier
         }
 
        private void FillData()
-        {
-            //cmbDept.ValueMember = Businessobj.BusinessFillDepartment().Columns[1].ToString();
+        {            
             BusinessAddEmployee objBusinessAddEmpDtls = new BusinessAddEmployee();
             dt = objBusinessAddEmpDtls.BusinessFillDepartment();
             cmbDept.DisplayMember = dt.Columns[1].ToString();
             cmbDept.DataSource = dt;
-           // cmbDept.ValueMember = Businessobj.BusinessFillDepartment().Columns[1].ToString();
-//            dt1 = Businessobj.BusinessFillLocation();
-//            Cmbloc.DisplayMember = dt1.Columns[1].ToString();
-//
-//            Cmbloc.DataSource = dt1;
+            cmbDept.DropDownStyle = ComboBoxStyle.DropDownList;
+            txtEid.Text = (objBusinessAddEmpDtls.BusinessGetLastEmpId()+1).ToString();
 
         }
     }

@@ -24,22 +24,16 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer {
         public int ValidateEmpDtlsInfo(EntityAddEmployee objEntityAddEmployee)
         {
             int flag = 0;
-            var reg = new Regex("^[a-zA-Z ]*$");
-            if (objEntityAddEmployee.EmpID < 1000 ||
-                objEntityAddEmployee.EmpID >= 2000000
-            )
-            {
-                if (objEntityAddEmployee.EmpID < 1000 ||
-                    objEntityAddEmployee.EmpID >= 2000000)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }               
-            }
-            if (!reg.IsMatch(objEntityAddEmployee.EmpName)  || String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName))
+            var reg = new Regex("^[a-zA-Z ]*$");            
+            if (!reg.IsMatch(objEntityAddEmployee.EmpName)  || String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName) || objEntityAddEmployee.EmpName.Length>25)
             {
                 if (String.IsNullOrWhiteSpace(objEntityAddEmployee.EmpName))
                 {
                     throw new ArgumentNullException();
+                }
+                else if (objEntityAddEmployee.EmpName.Length > 25)
+                {
+                    throw new ArgumentOutOfRangeException();
                 }
                 else
                 {
@@ -57,26 +51,27 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer {
                     throw new ArgumentException();
                   }
             }
-            if (double.TryParse(objEntityAddEmployee.Location, out double _ ) || String.IsNullOrWhiteSpace(objEntityAddEmployee.Location))
+            if (double.TryParse(objEntityAddEmployee.Location, out double _ ) || String.IsNullOrWhiteSpace(objEntityAddEmployee.Location) || objEntityAddEmployee.Location.Length>250)
             {
                 if (String.IsNullOrWhiteSpace(objEntityAddEmployee.Location))
                 {
                     throw new ArgumentNullException();
                 }
+                else if (objEntityAddEmployee.Location.Length > 250)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
                 else
                 {
                     throw new ArgumentException();
                 }
+
             }
             if (objEntityAddEmployee.ContactNo< 1500000000 ||
                 objEntityAddEmployee.ContactNo > 1999999999
             )
-            {
-                if (objEntityAddEmployee.ContactNo< 1500000000 ||
-                    objEntityAddEmployee.ContactNo > 1999999999)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }                
+            {                
+                throw new ArgumentOutOfRangeException();
             }            
             flag= 1;
             return flag;
@@ -87,22 +82,20 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer {
             {
                 return 4;
             }
-            SqlParameter[] objDataParams = new SqlParameter[5];
+            SqlParameter[] objDataParams = new SqlParameter[4];
 
-            objDataParams[0] = 
-                new SqlParameter("@EmpId", SqlDbType.Int) {Value = objEntityAddEmployee.EmpID};
+
+            objDataParams[0] =
+                new SqlParameter("@EmpName", SqlDbType.VarChar, 30) {Value = objEntityAddEmployee.EmpName};
+
 
             objDataParams[1] =
-                new SqlParameter("@EmpName", SqlDbType.VarChar, 25) {Value = objEntityAddEmployee.EmpName};
-
-
-            objDataParams[2] =
                 new SqlParameter("@DeptName", SqlDbType.VarChar, 25) {Value = objEntityAddEmployee.DepartmentName};
 
-            objDataParams[3] =
-                new SqlParameter("@Location", SqlDbType.VarChar, 25) {Value = objEntityAddEmployee.Location};
+            objDataParams[2] =
+                new SqlParameter("@Location", SqlDbType.VarChar, 250) {Value = objEntityAddEmployee.Location};
 
-            objDataParams[4] = 
+            objDataParams[3] = 
                 new SqlParameter("@ContactNumber", SqlDbType.BigInt) {Value = objEntityAddEmployee.ContactNo};
 
 
@@ -116,16 +109,33 @@ namespace Cognizant.Dotnet.EMS.BusinessLayer {
         public DataTable BusinessFillDepartment() {
 
             objDatatable.Clear();
-            objDatatable = objDataAddEmp.DataFillDeptDetails().Tables["Department"];
+            try
+            {
+                objDatatable = objDataAddEmp.DataFillDeptDetails().Tables["Department"];
+            }
+            catch (SqlException)
+            {
+                //throw e;
+            }
             return objDatatable;
 
 
         }
-        public DataTable BusinessFillLocation() {
-            objDatatable1.Clear();
-            objDatatable1 = objDataAddEmp.DataFillLocationDetails().Tables["Location"];
-            return objDatatable1;
-        }
+        public int BusinessGetLastEmpId()
+        {
+            SqlParameter EmpId = new SqlParameter("@EmpId", SqlDbType.Int) { Direction = ParameterDirection.Output };
+            DataAddEmployee objDataAddEmployee = new DataAddEmployee();
 
+            try
+            {
+                EmpId  = objDataAddEmployee.DataGetLastEmpId(EmpId);
+            }
+            catch (SqlException)
+            {
+                throw new InvalidOperationException();
+            }
+            int empId = (int)EmpId.Value;
+            return empId;
+        }
     }
 }

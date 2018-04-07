@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -56,6 +57,26 @@ namespace Cognizant.Dotnet.Ems.DataLayer
             objConnnection.Close();
             return objDataSet;
 
+        }
+
+        public SqlParameter DataGetLastDeptId(SqlParameter deptId)
+        {
+
+            objCommand = new SqlCommand("USPGetLastDeptId", objConnnection){CommandType = CommandType.StoredProcedure};
+            objCommand.Parameters.Add(deptId);
+            objConnnection.Open();
+            int result;           
+            try
+            {
+                result = objCommand.ExecuteNonQuery();
+            }
+            catch (SqlException e)
+            {
+                objConnnection.Close();
+                throw e;
+            }
+            objConnnection.Close();
+            return objCommand.Parameters["@DeptId"];
         }
     }
 }

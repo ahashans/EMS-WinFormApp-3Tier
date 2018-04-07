@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblDeptId = new System.Windows.Forms.Label();
-            this.txtDeptId = new System.Windows.Forms.TextBox();
             this.txtDeptName = new System.Windows.Forms.TextBox();
             this.lblDeptName = new System.Windows.Forms.Label();
             this.txtDeptSal = new System.Windows.Forms.TextBox();
@@ -37,23 +35,9 @@
             this.lblDeptLoc = new System.Windows.Forms.Label();
             this.cmbxLocation = new System.Windows.Forms.ComboBox();
             this.btnSubmit = new System.Windows.Forms.Button();
+            this.lblDeptId = new System.Windows.Forms.Label();
+            this.txtDeptId = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // lblDeptId
-            // 
-            this.lblDeptId.AutoSize = true;
-            this.lblDeptId.Location = new System.Drawing.Point(58, 45);
-            this.lblDeptId.Name = "lblDeptId";
-            this.lblDeptId.Size = new System.Drawing.Size(74, 13);
-            this.lblDeptId.TabIndex = 0;
-            this.lblDeptId.Text = "Department Id";
-            // 
-            // txtDeptId
-            // 
-            this.txtDeptId.Location = new System.Drawing.Point(157, 42);
-            this.txtDeptId.Name = "txtDeptId";
-            this.txtDeptId.Size = new System.Drawing.Size(100, 20);
-            this.txtDeptId.TabIndex = 1;
             // 
             // txtDeptName
             // 
@@ -65,9 +49,10 @@
             // lblDeptName
             // 
             this.lblDeptName.AutoSize = true;
-            this.lblDeptName.Location = new System.Drawing.Point(39, 82);
+            this.lblDeptName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeptName.Location = new System.Drawing.Point(4, 83);
             this.lblDeptName.Name = "lblDeptName";
-            this.lblDeptName.Size = new System.Drawing.Size(93, 13);
+            this.lblDeptName.Size = new System.Drawing.Size(133, 16);
             this.lblDeptName.TabIndex = 2;
             this.lblDeptName.Text = "Department Name";
             // 
@@ -81,18 +66,20 @@
             // lblDeptSal
             // 
             this.lblDeptSal.AutoSize = true;
-            this.lblDeptSal.Location = new System.Drawing.Point(39, 122);
+            this.lblDeptSal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeptSal.Location = new System.Drawing.Point(4, 123);
             this.lblDeptSal.Name = "lblDeptSal";
-            this.lblDeptSal.Size = new System.Drawing.Size(94, 13);
+            this.lblDeptSal.Size = new System.Drawing.Size(137, 16);
             this.lblDeptSal.TabIndex = 4;
             this.lblDeptSal.Text = "Department Salary";
             // 
             // lblDeptLoc
             // 
             this.lblDeptLoc.AutoSize = true;
-            this.lblDeptLoc.Location = new System.Drawing.Point(40, 164);
+            this.lblDeptLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeptLoc.Location = new System.Drawing.Point(4, 162);
             this.lblDeptLoc.Name = "lblDeptLoc";
-            this.lblDeptLoc.Size = new System.Drawing.Size(106, 13);
+            this.lblDeptLoc.Size = new System.Drawing.Size(151, 16);
             this.lblDeptLoc.TabIndex = 6;
             this.lblDeptLoc.Text = "Department Location";
             // 
@@ -113,6 +100,24 @@
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
+            // lblDeptId
+            // 
+            this.lblDeptId.AutoSize = true;
+            this.lblDeptId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeptId.Location = new System.Drawing.Point(4, 46);
+            this.lblDeptId.Name = "lblDeptId";
+            this.lblDeptId.Size = new System.Drawing.Size(105, 16);
+            this.lblDeptId.TabIndex = 0;
+            this.lblDeptId.Text = "Department Id";
+            // 
+            // txtDeptId
+            // 
+            this.txtDeptId.Location = new System.Drawing.Point(157, 46);
+            this.txtDeptId.Name = "txtDeptId";
+            this.txtDeptId.ReadOnly = true;
+            this.txtDeptId.Size = new System.Drawing.Size(100, 20);
+            this.txtDeptId.TabIndex = 1;
             // 
             // AddDeptDtls
             // 
@@ -137,9 +142,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblDeptId;
-        private System.Windows.Forms.TextBox txtDeptId;
         private System.Windows.Forms.TextBox txtDeptName;
         private System.Windows.Forms.Label lblDeptName;
         private System.Windows.Forms.TextBox txtDeptSal;
@@ -147,5 +149,7 @@
         private System.Windows.Forms.Label lblDeptLoc;
         private System.Windows.Forms.ComboBox cmbxLocation;
         private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.Label lblDeptId;
+        private System.Windows.Forms.TextBox txtDeptId;
     }
 }

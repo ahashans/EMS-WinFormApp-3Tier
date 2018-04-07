@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cognizant.Dotnet.Ems.EntityLayer;
 using Cognizant.Dotnet.EMS.BusinessLayer;
@@ -37,7 +31,14 @@ namespace _3_Tier
             if (Res == 1)
             {
                 Businessobj = new BusinessViewEmpDtls();
-                dt1 = Businessobj.BusinessFillEmpDtls(cmbxDept.Text);
+                try
+                {
+                    dt1 = Businessobj.BusinessFillEmpDtls(cmbxDept.Text);
+                }
+                catch (Exception exception)
+                {                    
+                    throw exception;
+                }
                 if (dt1.Rows.Count > 0)
                 {
                     dtgvEmpDtls.DataSource = dt1;
@@ -56,8 +57,8 @@ namespace _3_Tier
             Businessobj = new BusinessViewEmpDtls();
             dt = Businessobj.BusinessFillDepartment();
             cmbxDept.DisplayMember = dt.Columns[1].ToString();
-            cmbxDept.DataSource = dt;            
-
+            cmbxDept.DataSource = dt;
+            cmbxDept.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void ViewEmpByDept_Load(object sender, EventArgs e)

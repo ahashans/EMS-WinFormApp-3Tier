@@ -25,8 +25,9 @@ namespace _3_Tier
             Businessobj = new BusinessAddDepartment();
             dt = Businessobj.BusinessFillLocation();
             cmbxLocation.DisplayMember = dt.Columns[1].ToString();
-
             cmbxLocation.DataSource = dt;
+            cmbxLocation.DropDownStyle = ComboBoxStyle.DropDownList;
+            txtDeptId.Text = (Businessobj.BusinessGetLastDeptId()+1).ToString();
         }
         private void AddDeptDtls_Load(object sender, EventArgs e)
         {
@@ -35,33 +36,31 @@ namespace _3_Tier
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            StoreData(txtDeptId.Text,txtDeptName.Text, txtDeptSal.Text, cmbxLocation.Text);
+            StoreData(txtDeptName.Text, txtDeptSal.Text, cmbxLocation.Text);
             FillData();
         }
 
-        public void StoreData(string id, string name, string sal, string loc)
+        public void StoreData(string name, string sal, string loc)
         {
             int result =0;
             var reg = new Regex("^[a-zA-Z ]*$");
-            if (int.TryParse(id, out int _) && double.TryParse(sal, out double _))
+            if (double.TryParse(sal, out double _))
             {
                 objEntityAddDept = new EntityAddDepartment
-                {
-                    DeptId = Convert.ToInt32(id),
+                {                    
                     DeptName = name.Trim(),
                     DeptSal = Convert.ToDouble(sal),
                     DeptLoc = loc
-                };
-                if (objEntityAddDept.DeptId < 1000 ||
-                    objEntityAddDept.DeptId > 1999)
-                {
-                    MessageBox.Show("Invalid Department Id. Must be an int between 1000 to 1999");
-                }
-                else if (!reg.IsMatch(objEntityAddDept.DeptName) || String.IsNullOrWhiteSpace(objEntityAddDept.DeptName))
+                };                
+                if (!reg.IsMatch(objEntityAddDept.DeptName) || String.IsNullOrWhiteSpace(objEntityAddDept.DeptName) || objEntityAddDept.DeptName.Length > 25)
                 {
                     if (objEntityAddDept.DeptName.Any(char.IsDigit))
                     {
                         MessageBox.Show("Invalid Department Name. Only Alphabets allowed!");
+                    }
+                    else if (objEntityAddDept.DeptName.Length > 25)
+                    {
+                        MessageBox.Show("Department name must be less than 25 characters!");
                     }
                     else
                     {
@@ -99,11 +98,7 @@ namespace _3_Tier
                         MessageBox.Show("Department Id already Exist!");
                     }
                 }
-            }
-            else if (!int.TryParse(id, out int _))
-            {
-                MessageBox.Show("Invalid Department Id. Must be only Numbers!");
-            }
+            }            
             else if (!double.TryParse(sal, out double _))
             {
                 MessageBox.Show("Invalid Department Salary Must be only Digits!");
